@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Girlfriend?</title>
+    <style>
+        body {
+            background-color: lavender;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Heart-shaped balloons */
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 85%, 18% 100%, 0% 35%);
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        .balloon:nth-child(1) {
+            left: 10%;
+            animation-duration: 12s;
+        }
+
+        .balloon:nth-child(2) {
+            left: 25%;
+            animation-duration: 9s;
+        }
+
+        .balloon:nth-child(3) {
+            left: 40%;
+            animation-duration: 11s;
+        }
+
+        .balloon:nth-child(4) {
+            left: 60%;
+            animation-duration: 13s;
+        }
+
+        .balloon:nth-child(5) {
+            left: 75%;
+            animation-duration: 10s;
+        }
+
+        /* Envelope with skin color */
+        .envelope {
+            width: 200px;
+            height: 120px;
+            background-color: #f5d0a9; /* Skin color */
+            position: relative;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope:before, .envelope:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .envelope:before {
+            top: 0;
+            left: 0;
+            border-width: 60px 100px 0 100px;
+            border-color: pink transparent transparent transparent;
+        }
+
+        .envelope:after {
+            bottom: 0;
+            left: 0;
+            border-width: 0 100px 60px 100px;
+            border-color: transparent transparent pink transparent;
+        }
+
+        .paper {
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            background-color: white;
+            top: 35px;
+            left: 50px;
+            border-radius: 5px;
+            opacity: 0;
+            transform: scale(0);
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .unfolded {
+            transform: scale(1);
+            opacity: 1;
+            width: 200px;
+            height: 100px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .btn {
+            background-color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Message for "Yes" click - black, bold, italic */
+        #message {
+            display: none;
+            font-size: 24px;
+            font-weight: bold;
+            font-style: italic; /* Italic text */
+            color: black; /* Black text */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+
+<div class="envelope" onclick="unfoldPaper()"></div>
+
+<div class="paper" id="paper">
+    <div id="questionText">Will you be my girlfriend, Masirah?</div>
+    <div class="buttons">
+        <button class="btn" onclick="answerYes()">Yes</button>
+        <button class="btn" onclick="answerNo()">No</button>
+    </div>
+</div>
+
+<div id="message"></div>
+
+<script>
+    function unfoldPaper() {
+        document.getElementById('paper').classList.add('unfolded');
+    }
+
+    function answerYes() {
+        document.getElementById('paper').style.display = 'none';
+        document.getElementById('message').style.display = 'block';
+        document.getElementById('message').innerText = 'Yayyyy! You\'re my girlfriend!';
+    }
+
+    function answerNo() {
+        document.getElementById('questionText').innerText = 'Please!';
+    }
+</script>
+
+</body>
+</html>
